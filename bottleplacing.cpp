@@ -103,6 +103,13 @@ int main(int argc, char** argv) {
             char welcome_message[100] = "Welcome from FCI control program!";
             send(client_socket, welcome_message, sizeof(welcome_message), MSG_CONFIRM);
 
+             std::string test = "{\"q\": [0, -0.785241, 0, -2.35583 0, 1.57135, 0.785809,0.1,0.1]}\r\n";
+                std::cout << "send message to client:"<< test.c_str()<<test.length() << std::endl;
+                //std::cout << test.length()<< std::endl; 
+                std::cout << test<< std::endl;  
+                send(client_socket, test.c_str(), test.length(), MSG_DONTWAIT);
+
+
 
 //         //--------- END of TCP Socket Set-Up ------------------------------
 
@@ -185,7 +192,7 @@ int main(int argc, char** argv) {
             return output;
 
          };
-
+           std::this_thread::sleep_for(std::chrono::seconds(10));
            myRobot.control(cartesian_initial_motion_1);
            std::cout << "Reached position 2" << std::endl; 
 //         // 2: Grasp
@@ -268,6 +275,7 @@ int main(int argc, char** argv) {
 
                 return output;
           };
+           std::this_thread::sleep_for(std::chrono::seconds(2));
 
           myRobot.control(cartesian_moving_slightlyUp);
  
@@ -343,7 +351,7 @@ int main(int argc, char** argv) {
                 return output;
                 
             };
-
+           std::this_thread::sleep_for(std::chrono::seconds(2));
             myRobot.control(cartesian_moving_around);
 
 
@@ -422,6 +430,7 @@ int main(int argc, char** argv) {
                 return output;
                 
             };
+           std::this_thread::sleep_for(std::chrono::seconds(2));
 
             myRobot.control(cartesian_moving_around2);
 
@@ -496,6 +505,7 @@ int main(int argc, char** argv) {
                 return output;
                 
             };
+           std::this_thread::sleep_for(std::chrono::seconds(2));
 
             myRobot.control(cartesian_moving_around3);
 
@@ -566,6 +576,7 @@ int main(int argc, char** argv) {
 
                 return output;
            };
+           std::this_thread::sleep_for(std::chrono::seconds(2));
 
           myRobot.control(cartesian_moving_slightlyDown);
 
@@ -643,12 +654,18 @@ int main(int argc, char** argv) {
 
                 return output;
           };
+           std::this_thread::sleep_for(std::chrono::seconds(2));
 
           myRobot.control(cartesian_moving_Up);
           
 //        // 6. Back to initial position
        std::cout << "8. To Initial"  << std::endl;
         myRobot.control(motiongenerator);
+         std::string test1 = "{\"q\": [0, -0.785241, 0, -2.35583 0, 1.57135, 0.785809,0.1,0.1]}\r\n";
+        std::cout << "send message to client:"<< test1.c_str()<<test1.length() << std::endl;
+                //std::cout << test.length()<< std::endl; 
+        std::cout << test1<< std::endl;  
+        send(client_socket, test1.c_str(), test1.length(), MSG_DONTWAIT);
 
 
     }
