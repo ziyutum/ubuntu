@@ -1,0 +1,14 @@
+/home/masais/DT-wsuc_ft/aas4panda-josua/CSClient/bin/Release/netcoreapp6/publish/CSClient
+/home/masais/DT-wsuc_ft/aas4panda-josua/CSClient/bin/Release/netcoreapp6/publish/CSClient.dll
+/home/masais/DT-wsuc_ft/aas4panda-josua/CSClient/bin/Release/netcoreapp6/publish/CSClient.deps.json
+/home/masais/DT-wsuc_ft/aas4panda-josua/CSClient/bin/Release/netcoreapp6/publish/CSClient.runtimeconfig.json
+/home/masais/DT-wsuc_ft/aas4panda-josua/CSClient/bin/Release/netcoreapp6/publish/CSClient.pdb
+/home/masais/DT-wsuc_ft/aas4panda-josua/CSClient/bin/Release/netcoreapp6/publish/Azure.Core.dll
+/home/masais/DT-wsuc_ft/aas4panda-josua/CSClient/bin/Release/netcoreapp6/publish/Azure.DigitalTwins.Core.dll
+/home/masais/DT-wsuc_ft/aas4panda-josua/CSClient/bin/Release/netcoreapp6/publish/Azure.Identity.dll
+/home/masais/DT-wsuc_ft/aas4panda-josua/CSClient/bin/Release/netcoreapp6/publish/Microsoft.Bcl.AsyncInterfaces.dll
+/home/masais/DT-wsuc_ft/aas4panda-josua/CSClient/bin/Release/netcoreapp6/publish/Microsoft.Identity.Client.dll
+/home/masais/DT-wsuc_ft/aas4panda-josua/CSClient/bin/Release/netcoreapp6/publish/Microsoft.Identity.Client.Extensions.Msal.dll
+/home/masais/DT-wsuc_ft/aas4panda-josua/CSClient/bin/Release/netcoreapp6/publish/System.Memory.Data.dll
+/home/masais/DT-wsuc_ft/aas4panda-josua/CSClient/bin/Release/netcoreapp6/publish/System.Security.Cryptography.ProtectedData.dll
+/home/masais/DT-wsuc_ft/aas4panda-josua/CSClient/bin/Release/netcoreapp6/publish/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
