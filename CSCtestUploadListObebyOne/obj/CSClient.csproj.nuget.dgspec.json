@@ -1,0 +1,76 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/masais/ziyu/CSClienttest/CSClient.csproj": {}
+  },
+  "projects": {
+    "/home/masais/ziyu/CSClienttest/CSClient.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/masais/ziyu/CSClienttest/CSClient.csproj",
+        "projectName": "CSClient",
+        "projectPath": "/home/masais/ziyu/CSClienttest/CSClient.csproj",
+        "packagesPath": "/home/masais/.nuget/packages/",
+        "outputPath": "/home/masais/ziyu/CSClienttest/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/masais/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp8"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "netcoreapp8",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "netcoreapp8",
+          "dependencies": {
+            "Azure.DigitalTwins.Core": {
+              "target": "Package",
+              "version": "[1.2.2, )"
+            },
+            "Azure.Identity": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
