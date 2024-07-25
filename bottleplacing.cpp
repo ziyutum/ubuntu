@@ -46,6 +46,7 @@ int main(int argc, char** argv) {
 //         // Set speedfactor
          double speedfactor = 0.3;
 //         // Set an initial position
+         int message_count = 0;
 
 
           std::array<double, 7> safepos = {{0, -M_PI_4, 0, -3 * M_PI_4, 0, M_PI_2, M_PI_4}};
@@ -101,18 +102,95 @@ int main(int argc, char** argv) {
 
 //         // Send a welcome message
             char welcome_message[100] = "Welcome from FCI control program!";
-            send(client_socket, welcome_message, sizeof(welcome_message), MSG_CONFIRM);
+            // send(client_socket, welcome_message, sizeof(welcome_message), MSG_CONFIRM);
 
-             std::string test = "{\"q\": [0, -0.785241, 0, -2.35583 0, 1.57135, 0.785809,0.1,0.1]}\r\n";
-                std::cout << "send message to client:"<< test.c_str()<<test.length() << std::endl;
-                //std::cout << test.length()<< std::endl; 
-                std::cout << test<< std::endl;  
-                send(client_socket, test.c_str(), test.length(), MSG_DONTWAIT);
+            //  std::string test = "{\"q\": [0, -0.785241, 0, -2.35583 0, 1.57135, 0.785809,0.1,0.1]}\r\n";
+            //     std::cout << "send message to client:"<< test.c_str()<<test.length() << std::endl;
+            //     //std::cout << test.length()<< std::endl; 
+            //     std::cout << test<< std::endl;  
+            //     send(client_socket, test.c_str(), test.length(), MSG_DONTWAIT);
 
 
 
 //         //--------- END of TCP Socket Set-Up ------------------------------
+          double time0 = 0.0;
+          double finish_time0 = 20.0;
 
+//         // at the initial position: echo_robot_state 192.168.3.100
+//         // find the variable "O_T_EE"
+//         // this is the initial_pos1 
+          std::array<double, 16> initial_pos0; 
+        
+
+         auto cartesian_initial_motion_0 = [&initial_pos0, &time0, &finish_time0, &client_socket](const franka::RobotState& rstate, franka::Duration periode) -> franka::CartesianPose
+        {
+            
+            time0 += periode.toSec();
+
+            if(time0==0.0)
+            {
+                initial_pos0 = rstate.O_T_EE_c;
+                // Send go for recoding to client app
+                //send(client_socket, "GO", sizeof("GO"), MSG_DONTWAIT);
+            }
+
+            // Distance from the init position
+            //////////////////////new
+            //double dx = 0*(sin(M_PI_4*(1-cos(M_PI/5*time1))));
+            //double dz = 0.265*(cos(M_PI_4*(1-cos(M_PI/5*time1)))-1);
+            //double dz = -0.1*(cos(M_PI_4*(1-cos(M_PI/5*time1))));
+              constexpr double kRadius = 0.4;
+             double angle = M_PI / 4 * (1 - std::cos(M_PI / 5.0 * time0));
+             double dx = 0.0 * (cos(M_PI_4*(1-cos(M_PI/3*time0)))-1);
+             double dy = 0* (cos(M_PI_4*(1-cos(M_PI/3*time0)))-1);
+             double dz = 0 * (cos(M_PI_4*(1-cos(M_PI/3*time0)))-1);
+            std::array<double, 16> current_pos = initial_pos0;
+            current_pos[12] += dx;
+            current_pos[13] += dy;
+            current_pos[14] += dz;
+
+            franka::CartesianPose output = current_pos;
+
+            if(time0 >= finish_time0)
+            {
+                
+                return  franka::MotionFinished(output);
+            }
+ //           
+//             // previously it was std::string test
+                std::string test = "{\"q\": [";
+                for (int i = 0;i<9;i++){
+                    if (i<7){
+                        std::string q = std::to_string(rstate.q[i]);
+                        test += q;
+                    }
+                    else {
+                        test += std::to_string(0.0100);
+                        if (test.length() < 100){
+                            for (int j = 0; j<100-test.length(); j++){
+                                test += std::to_string(0);
+                                 std::cout<<test.length()<<std::endl;
+                            }
+                        }
+                        
+                    }
+                    if (i<8){
+                        test += ",";
+                    }
+
+                }
+                test += "]}\r\n";
+                
+                //std::cout << "send message to client:"<< test.c_str()<<test.length() << std::endl;
+                //std::cout << test.length()<< std::endl; 
+                //std::cout << test<< std::endl;  
+                send(client_socket, test.c_str(), test.length(), MSG_DONTWAIT);
+//             //// end of new code
+            return output;
+
+         };
+           //std::this_thread::sleep_for(std::chrono::seconds(10));
+           myRobot.control(cartesian_initial_motion_0); 
 //         // 1: Move down to pick something up
           std::cout << "First motion: Move down to the bottle position pick the bottle up"  << client_socket << std::endl;
           double time1 = 0.0;
@@ -124,7 +202,7 @@ int main(int argc, char** argv) {
           std::array<double, 16> initial_pos1; 
         
 
-         auto cartesian_initial_motion_1 = [&initial_pos1, &time1, &finish_time1, &client_socket](const franka::RobotState& rstate, franka::Duration periode) -> franka::CartesianPose
+         auto cartesian_initial_motion_1 = [&initial_pos1, &time1, &finish_time1, &client_socket,&message_count](const franka::RobotState& rstate, franka::Duration periode) -> franka::CartesianPose
         {
             std::cout <<rstate.O_T_EE_c[14] << std::endl;
             time1 += periode.toSec();
@@ -183,6 +261,7 @@ int main(int argc, char** argv) {
 
                 }
                 test += "]}\r\n";
+                message_count++;
 
                 std::cout << "send message to client:"<< test.c_str()<<test.length() << std::endl;
                 //std::cout << test.length()<< std::endl; 
@@ -211,7 +290,7 @@ int main(int argc, char** argv) {
          double finish_time_2 = 3.0;
          std::array<double, 16> initial_pos_2;
 
-         auto cartesian_moving_slightlyUp = [&initial_pos_2, &time_2, &finish_time_2,&client_socket](const franka::RobotState& rstate, franka::Duration periode) -> franka::CartesianPose
+         auto cartesian_moving_slightlyUp = [&initial_pos_2, &time_2, &finish_time_2,&client_socket,&message_count](const franka::RobotState& rstate, franka::Duration periode) -> franka::CartesianPose
         {
 
             time_2 += periode.toSec();
@@ -266,6 +345,7 @@ int main(int argc, char** argv) {
 
                 }
                 test += "]}\r\n";
+                message_count++;
 
                 std::cout << "send message to client:"<< test.c_str()<<test.length() << std::endl;
 
@@ -285,7 +365,7 @@ int main(int argc, char** argv) {
            double finish_time_3 = 3.0;
            std::array<double, 16> initial_pos_3; 
 
-            auto cartesian_moving_around = [&initial_pos_3, &time_3, &finish_time_3,&client_socket](const franka::RobotState& rstate, franka::Duration periode) -> franka::CartesianPose
+            auto cartesian_moving_around = [&initial_pos_3, &time_3, &finish_time_3,&client_socket,&message_count](const franka::RobotState& rstate, franka::Duration periode) -> franka::CartesianPose
             {
 
                 time_3 += periode.toSec();
@@ -341,6 +421,7 @@ int main(int argc, char** argv) {
 
                 }
                 test += "]}\r\n";
+                message_count++;
 
                 std::cout << "send message to client:"<< test.c_str()<<test.length() << std::endl;
 
@@ -361,7 +442,7 @@ int main(int argc, char** argv) {
            double finish_time_32 = 4.0;
            std::array<double, 16> initial_pos_32; 
 
-            auto cartesian_moving_around2 = [&initial_pos_32, &time_32, &finish_time_32,&client_socket](const franka::RobotState& rstate, franka::Duration periode) -> franka::CartesianPose
+            auto cartesian_moving_around2 = [&initial_pos_32, &time_32, &finish_time_32,&client_socket,&message_count](const franka::RobotState& rstate, franka::Duration periode) -> franka::CartesianPose
             {
 
                 time_32 += periode.toSec();
@@ -418,6 +499,7 @@ int main(int argc, char** argv) {
 
                 }
                 test += "]}\r\n";
+                message_count++;
 
                 std::cout << "send message to client:"<< test.c_str()<<test.length() << std::endl;
 
@@ -440,7 +522,7 @@ int main(int argc, char** argv) {
            double finish_time_33 = 4.0;
            std::array<double, 16> initial_pos_33; 
 
-            auto cartesian_moving_around3 = [&initial_pos_33, &time_33, &finish_time_33,&client_socket](const franka::RobotState& rstate, franka::Duration periode) -> franka::CartesianPose
+            auto cartesian_moving_around3 = [&initial_pos_33, &time_33, &finish_time_33,&client_socket,&message_count](const franka::RobotState& rstate, franka::Duration periode) -> franka::CartesianPose
             {
 
                 time_33 += periode.toSec();
@@ -492,6 +574,7 @@ int main(int argc, char** argv) {
 
                 }
                 test += "]}\r\n";
+                message_count++;
 
                 std::cout << "send message to client:"<< test.c_str()<<test.length() << std::endl;
 
@@ -516,7 +599,7 @@ int main(int argc, char** argv) {
            double finish_time_4 = 3.0;
           std::array<double, 16> initial_pos_4;
 
-        auto cartesian_moving_slightlyDown = [&initial_pos_4, &time_4, &finish_time_4,&client_socket](const franka::RobotState& rstate, franka::Duration periode) -> franka::CartesianPose{
+        auto cartesian_moving_slightlyDown = [&initial_pos_4, &time_4, &finish_time_4,&client_socket,&message_count](const franka::RobotState& rstate, franka::Duration periode) -> franka::CartesianPose{
 
            time_4 += periode.toSec();
 
@@ -567,6 +650,7 @@ int main(int argc, char** argv) {
 
                 }
                 test += "]}\r\n";
+                message_count++;
 
                 std::cout << "send message to client:"<< test.c_str()<<test.length() << std::endl;
 
@@ -591,7 +675,7 @@ int main(int argc, char** argv) {
          double finish_time_6 = 3.0;
          std::array<double, 16> initial_pos_6;
 
-         auto cartesian_moving_Up = [&initial_pos_6, &time_6, &finish_time_6,&client_socket](const franka::RobotState& rstate, franka::Duration periode) -> franka::CartesianPose
+         auto cartesian_moving_Up = [&initial_pos_6, &time_6, &finish_time_6,&client_socket,&message_count](const franka::RobotState& rstate, franka::Duration periode) -> franka::CartesianPose
         {
 
             time_6 += periode.toSec();
@@ -644,6 +728,7 @@ int main(int argc, char** argv) {
 
                 }
                 test += "]}\r\n";
+                message_count++;
 
                 std::cout << "send message to client:"<< test.c_str()<<test.length() << std::endl;
 
@@ -661,11 +746,12 @@ int main(int argc, char** argv) {
 //        // 6. Back to initial position
        std::cout << "8. To Initial"  << std::endl;
         myRobot.control(motiongenerator);
-         std::string test1 = "{\"q\": [0, -0.785241, 0, -2.35583 0, 1.57135, 0.785809,0.1,0.1]}\r\n";
-        std::cout << "send message to client:"<< test1.c_str()<<test1.length() << std::endl;
-                //std::cout << test.length()<< std::endl; 
-        std::cout << test1<< std::endl;  
-        send(client_socket, test1.c_str(), test1.length(), MSG_DONTWAIT);
+        std::cout << message_count << std::endl;
+        //  std::string test1 = "{\"q\": [0, -0.785241, 0, -2.35583 0, 1.57135, 0.785809,0.1,0.1]}\r\n";
+        // std::cout << "send message to client:"<< test1.c_str()<<test1.length() << std::endl;
+        //         //std::cout << test.length()<< std::endl; 
+        // std::cout << test1<< std::endl;  
+        // send(client_socket, test1.c_str(), test1.length(), MSG_DONTWAIT);
 
 
     }
