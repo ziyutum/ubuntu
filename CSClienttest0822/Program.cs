@@ -1,15 +1,4 @@
-﻿/* EXTENSIBLE TWIN COMMUNICATION INTERFACE MODULE (ETCIM)
- * This program presents the central interface between the physical assset
- * and its virtual representation. 
- * 
- * Documentation of Azure Digital Twins SDK:
- * https://docs.microsoft.com/de-de/dotnet/api/azure.digitaltwins.core?view=azure-dotnet
- * Doc Azure Digital Twins REST API:
- * https://docs.microsoft.com/de-DE/rest/api/azure-digitaltwins/
- * 
- * Author: Josua Hoefgen
- */
-
+﻿
 using System;
 using System.Net; // For client side connection to omniverse
 using System.Net.Sockets; // For server side socket connection with the Robot controller
@@ -62,6 +51,7 @@ namespace CSClient
         //static List<List<string>> bigList= new List<List<string>>(10*9);
         static int m_numValidData = 0;
         static int m_numDataRequested  = 0;
+         static int countnumber=0;
         static List<string> m_dataAzdtDownload = new List<string>();
         static List<string> m_dataValidIn = new List<string>(); // Addon: stores valid data received from RobotControlProgram
 
@@ -300,6 +290,7 @@ namespace CSClient
 
                 // End modification
                 // Read data from the socket 
+                 countnumber +=1;
                 num_bytes_read = m_deviceClientStream.Read(fci_data_bytes, 0, fci_data_bytes.Length);
                 //Console.WriteLine(num_bytes_read);
                 
@@ -360,10 +351,10 @@ namespace CSClient
                         string component_value_result = String.Empty; 
                         BasicDigitalTwin twin_value; 
                         string buffer = "[";
-                        int countnumber=0;
+                      
 
                         for (int j = 0; j < valuesToSend.Count; j++)
-                        {   countnumber +=1;
+                        {   
                             string twinId = updateTwinIds[j % updateTwinIds.Count];//[jointpos1]
                             string value = valuesToSend[j];                //0.258
 
