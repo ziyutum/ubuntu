@@ -1,0 +1,122 @@
+[
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/control_loop.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/control_loop.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/control_loop.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/control_tools.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/control_tools.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/control_tools.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/control_types.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/control_types.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/control_types.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/duration.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/duration.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/duration.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/errors.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/errors.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/errors.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/exception.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/exception.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/exception.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/gripper.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/gripper.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/gripper.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/gripper_state.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/gripper_state.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/gripper_state.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/library_downloader.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/library_downloader.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/library_downloader.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/library_loader.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/library_loader.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/library_loader.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/load_calculations.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/load_calculations.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/load_calculations.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/log.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/log.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/log.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/logger.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/logger.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/logger.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/lowpass_filter.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/lowpass_filter.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/lowpass_filter.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/model.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/model.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/model.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/model_library.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/model_library.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/model_library.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/network.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/network.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/network.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/rate_limiting.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/rate_limiting.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/rate_limiting.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/robot.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/robot.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/robot.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/robot_impl.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/robot_impl.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/robot_impl.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/robot_state.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/robot_state.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/robot_state.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/vacuum_gripper.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/vacuum_gripper.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/vacuum_gripper.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka",
+  "command": "/usr/bin/c++  -DPOCO_NO_AUTOMATIC_LIBS -Dfranka_EXPORTS -I/home/masais/ziyu/robotControlProgram/libfranka/include -I/home/masais/ziyu/robotControlProgram/libfranka/common/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG -fPIC   -Wall -Wextra -pthread -std=gnu++14 -o CMakeFiles/franka.dir/src/vacuum_gripper_state.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/src/vacuum_gripper_state.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/src/vacuum_gripper_state.cpp"
+},
+{
+  "directory": "/home/masais/ziyu/robotControlProgram/build/libfranka/examples",
+  "command": "/usr/bin/c++   -I/home/masais/ziyu/robotControlProgram/libfranka/include -isystem /usr/include/eigen3  -O2 -g -DNDEBUG   -Wall -Wextra -std=gnu++14 -o CMakeFiles/examples_common.dir/examples_common.cpp.o -c /home/masais/ziyu/robotControlProgram/libfranka/examples/examples_common.cpp",
+  "file": "/home/masais/ziyu/robotControlProgram/libfranka/examples/examples_common.cpp"
+}
+]
