@@ -32,13 +32,11 @@ from omni.isaac.core.utils.types import ArticulationAction
 # Franka Panda specific imports
 from omni.isaac.franka import Franka
 from omni.isaac.core.prims import RigidPrim
-# from omni.physx.scripts import PhysxUtils
-from pxr import Usd, UsdPhysics
 
 GRAD_TO_RAD = 2*pi/360
 HOST_ADDR = "127.0.0.1"
-# PORT = 32323 # Port of the Azure Client App (or the simulation)
-PORT = 8080
+PORT = 32323 # Port of the Azure Client App (or the simulation)
+
 # From: https://stackoverflow.com/questions/3393612/run-certain-code-every-n-seconds
 class RepeatedTimer(object):
     def __init__(self, interval, function, *args, **kwargs):
@@ -77,8 +75,6 @@ class PandaAIS(BaseSample):
         self._connectTimer = RepeatedTimer(2, self.connect_to_datasource)
         self._jointPos1 = 0.0
         self._turnDirectionPos = True
-        self._last_joint_positions = self._last_joint_positions = [None] * 7 + [0.01, 0.01]
-
         return
 
     def setup_scene(self):
@@ -86,13 +82,10 @@ class PandaAIS(BaseSample):
         world = self.get_world()
         print("[INFO] Set up world scene.")
         #world.scene.add_default_ground_plane()
-        world.scene.add(GroundPlane(
-            prim_path="/World/groundPlane", 
-            size=0.25,
-            color=np.array([0.5, 0.5, 0.5])))
-        print("[INFO] Added groundplane to scene.")
 
-     
+        # # 2. Add groundplane to world scene 
+        # world.scene.add(GroundPlane(prim_path="/World/groundPlane", size=25, color=np.array([0.5, 0.5, 0.5])))
+        # print("[INFO] Added groundplane to scene.")
 
         # # 3. Add Franka robot to world scene  
         # absolute_asset_path1 = "/home/masais/panda/Franka/franka_zy.usd"
@@ -106,81 +99,33 @@ class PandaAIS(BaseSample):
         # print("Num of degrees of freedom before first reset: " + str(panda_robot.num_dof)) # prints None
 
 
-        ##ziyu 04.09 commit myjoghurt to franka----------------------------------------------------------------------------------------------------------------------------
+
         # 3. Add myJoghurt to world scene  
-        absolute_asset_path = "/home/masais/panda/Franka/myziyu0509.usd"
+        absolute_asset_path = "/home/masais/panda/Franka/myjoghurtziyu.usd"
         # This will create a new XFormPrim and point it to the usd file as a reference
         # Similar to how pointers work in memory
         add_reference_to_stage(usd_path=absolute_asset_path, prim_path="/World/myJoghurt")
         myjoghurt = world.scene.add(RigidPrim(prim_path="/World/myJoghurt", name="myjoghurt", 
-                                            scale = [0.01],
-                                            position=[0,0,0.8280]
-                                           ))
+                                             scale = [1],
+                                            # position=[0,0,1]
+                                            ))
         
-        absolute_asset_pathfranka = "/home/masais/panda/Franka/franka_init.usd"
-        # This will create a new XFormPrim and point it to the usd file as a reference
-        # Similar to how pointers work in memory
-        add_reference_to_stage(usd_path=absolute_asset_pathfranka, prim_path="/World/franka")
-        
-
-        panda_robot = world.scene.add(Robot(prim_path="/World/franka", name="panda_robot", 
-                                     scale =[1],
-                                     position=[0.308,-0.71812,0.7999],
-        #                             # orientation = [1,0,0,-1]
-                                    ))
-        
-        absolute_asset_pathbottle = "/home/masais/panda/Franka/bottle.usd"
-        # # This will create a new XFormPrim and point it to the usd file as a reference
-        # # Similar to how pointers work in memory
-        add_reference_to_stage(usd_path=absolute_asset_pathbottle, prim_path="/World/bottle")
-        
-
-        bottle = world.scene.add(RigidPrim(prim_path="/World/bottle/bottle", name="bottle", 
-                                     scale =[0.001],
-                                     position=[0.54,-0.95764,0.825],
-        #                             # orientation = [1,0,0,-1]
-                                    ))
-        # Create and set PhysicsMaterial for the bottle
-        # stage = Usd.Stage.Open(self.get_world().get_stage().GetRootLayer().identifier)
-        
-        # # Define the physics material with friction
-        # physx_material_path = "/World/myJoghurt/myJoghurt_ZIyu/Geometry/VN3066_000_Layout_Uni_Kassel_070919_0/_691296_GLAS_mit_Barcode_30_2578_PhysxMaterial"
-        # physx_material = UsdPhysics.Material.Define(stage, physx_material_path)
-        # physx_material.CreateStaticFrictionAttr(0.5)
-        # physx_material.CreateDynamicFrictionAttr(0.5)
-        # physx_material.CreateRestitutionAttr(0.1)
-
-        # # Assign the physics material to the bottle
-        # bottle_prim = stage.GetPrimAtPath("/World/myJoghurt/myJoghurt_ZIyu/Geometry/VN3066_000_Layout_Uni_Kassel_070919_0/_691296_GLAS_mit_Barcode_30_2578")
-        # if bottle_prim:
-        #     UsdPhysics.MaterialBindingAPI.Apply(bottle_prim, physx_material.GetPrim())
-
-        # print("[INFO] Added bottle to the scene with friction properties.")
+        print("[INFO] Added plant to scene.")
 
 
 
         
         
-        # bottle = world.scene.add(RigidPrim(prim_path="/World/myJoghurt/myJoghurt_ZIyu/Geometry/VN3066_000_Layout_Uni_Kassel_070919_0/_691296_GLAS_mit_Barcode_33_2581",
-
-        #                                                    name="bottle",
-        #                                                   #position=[418.74569,-958.25394,-10],
-        # #                                                   scale=[1]
-        #                                                   ))
-    #ziyu end commit----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    #ziyu change myjoghurt to franka testing the gripper
-       
-
-
+        # bottle = world.scene.add(RigidPrim(prim_path="/World/myJoghurt/myJoghurt_ZIyu/Geometry/VN3066_000_Layout_Uni_Kassel_070919_0/VN3066_020_Band_Layout_1_91/_691296_GLAS_mit_Barcode_4_1591", 
+        #                                                   name="bottle",
+        #                                                   position=[-30,-15,10],
+        #                                                   scale=[1]))
         return
-
 
     async def setup_post_load(self):
         self._world = self.get_world()
         self._franka = self._world.scene.get_object("panda_robot")
-        self._bottle = self._world.scene.get_object("bottle")
-        #self._bottle.set_world_pose(position=[0.5,-1.061,0.7999])
+        # self._bottle = self._world.scene.get_object("bottle")
         # self._myjoghurt= self._world.scene.get_object("myjoghurt")
         # initial_joint_positions = [0.0, -1.0, 0.0, -2.0, 0.0, 1.5, 0.7,0.1,0.1]
         # self._franka.set_joint_positions(initial_joint_positions)
@@ -218,15 +163,7 @@ class PandaAIS(BaseSample):
         
         #self._world.add_physics_callback("sending_actions", callback_fn=self.send_robot_actions)
         #self._world.add_physics_callback("logging_jointpos", callback_fn=self.log_joint_position_during_sim)
-
-        ## ziyu manuell apply action
-        # self._franka.apply_action(control_actions = ArticulationAction(
-        #             joint_positions=[0.285453,-0.246976,0.407148,-2.135107,0.033087,1.897359,-0.401687,0.05,0.05],
-        #             joint_efforts=None,
-        #             joint_velocities=None
-        #         ))
         self._world.add_physics_callback("sending_actions", callback_fn=self.send_robot_actions)
-       ## end modify
         # self._world.add_physics_callback("sending_actions", callback_fn=self.send_mir_actions)
         return
     
@@ -264,87 +201,7 @@ class PandaAIS(BaseSample):
     #     self._casing.set_world_pose(position=position_mir, orientation=orientation_mir ) 
     #     return
     
-    # def send_robot_actions(self, step_size):
-    #     try:
-    #         # Clear the receive buffer 
-    #         self._client.setblocking(0)
-    #         chunks = []
-    #         while True:
-    #             try:
-    #                 chunk = self._client.recv(4096)
-    #                 if not chunk:
-    #                     break
-    #                 chunks.append(chunk)
-    #             except socket.error:
-    #                 break
-    #         self._client.setblocking(1)
-            
-    #         data = b''.join(chunks)
-    #         if not data:
-    #             return
-
-    #         # Only process the last complete packet
-    #         messages = data.decode('utf-8').strip().split('\n')
-    #         last_message = messages[-1]
-    #         #zy changes the message number
-    #         #last_message = messages
-
-    #         print("Read data: ", last_message)
-
-    #         json_list_buffer = json.loads(last_message)
-    #         #nparray = np.array(json_list_buffer)
-    #         #zy if connect the robot directly, the data should remove q 
-    #         nparray = np.array(json_list_buffer['q'])
-    #         print("nparray: ", nparray)
-    #         print("Array size:", nparray.size)
-
-    #         if nparray.size >= 9:
-    #             nparray_new = nparray[0:9]  # Take the first 7 elements for joint positions
-    #             # self._franka.set_joint_positions(nparray_new)
-    #             self._franka.set_joint_positions(nparray_new)
-    #             print("new array is", nparray_new)
-                
-    #             # get current time
-    #             now = datetime.datetime.now()
-    #             # print current time
-    #             print("Current local time:", now.strftime("%Y-%m-%d %H:%M:%S:%f")[:-3])
-
-    #             self._franka.apply_action(control_actions = ArticulationAction(
-    #                 joint_positions=nparray_new,
-    #                 joint_efforts=None,
-    #                 joint_velocities=None
-    #             ))
-    #         elif nparray.size == 7:
-    #             nparray_new = np.append(nparray, [0, 0])
-    #             #self._franka.set_joint_positions(nparray_new)
-    #         else:
-    #             print("Skipped array of incompatible size: ", nparray.size)
-            
-    #         self._logger.write("\n{t} Joint-Pos.: {pos}".format(t=datetime.datetime.now(), 
-    #                                                             pos=nparray_new))
-
-    #     except Exception as ex:
-    #         print(f"Exception while converting data: {ex}")    
-
-    #     return
-
-    def send_robot_actions(self, step_size): 
-
-        # self._franka.apply_action(control_actions = ArticulationAction(
-        #             joint_positions=[0.285453,-0.246976,0.407148,-2.135107,0.033087,1.897359,-0.401687,0.5,0.5],
-        #             joint_efforts=None,
-        #             joint_velocities=None
-        #         ))
-        # print("  DOF-Names     : ", self._franka.dof_names)
-        # print("  DOF-Properties: ", self._franka.get_applied_action())
-        # sleep(500)
-        # self._franka.apply_action(control_actions = ArticulationAction(
-        #             joint_positions=[1,1,1,1,1,1,1,-0.01,-0.01],
-        #             joint_efforts=None,
-        #             joint_velocities=None
-        #         ))
-
-
+    def send_robot_actions(self, step_size):
         try:
             # Clear the receive buffer 
             self._client.setblocking(0)
@@ -361,20 +218,6 @@ class PandaAIS(BaseSample):
             
             data = b''.join(chunks)
             if not data:
-                # print("No data received from client.")
-                # #ziyu added if ther eis no data received, just keep the pose loike the last position
-                # # if hasattr(self, '_last_joint_positions'):
-                # #     print("No new data received, keeping the last joint positions.")
-                # if self._last_joint_positions is not None:
-                #     print("No new data received, keeping the last joint positions.")
-                #     print(self._last_joint_positions)
-                self._franka.apply_action(control_actions=ArticulationAction(
-                    joint_positions=self._last_joint_positions,
-                    joint_efforts=None, # [0.0] * len(self._last_joint_positions),  # Keep efforts at zero
-                    joint_velocities=None#[0.0] * len(self._last_joint_positions)  # Keep velocities at zero
-                    ))
-            # else:
-            #     print("No data received and no previous joint positions available.")
                 return
 
             # Only process the last complete packet
@@ -383,21 +226,15 @@ class PandaAIS(BaseSample):
 
             print("Read data: ", last_message)
 
-            # JZh added update_count_sum to count total number of data received from RCP
-            # self.update_count_sum=self.update_count_sum+1
-            # print(self.update_count_sum)
-            # end
-
             json_list_buffer = json.loads(last_message)
-            nparray = np.array(json_list_buffer['q'])
-            #nparray = np.array(json_list_buffer)
+            nparray = np.array(json_list_buffer)
             print("nparray: ", nparray)
             print("Array size:", nparray.size)
 
-            if nparray.size == 9:
+            if nparray.size >= 9:
                 nparray_new = nparray[0:9]  # Take the first 7 elements for joint positions
-                # self._franka.set_joint_positions(nparray_new)
-                self._last_joint_positions[:7]= nparray_new[:7]
+                #self._franka.set_joint_positions(nparray_new)
+                
                 # get current time
                 now = datetime.datetime.now()
                 # print current time
@@ -410,8 +247,7 @@ class PandaAIS(BaseSample):
                 ))
             elif nparray.size == 7:
                 nparray_new = np.append(nparray, [0, 0])
-                self._last_joint_positions= nparray_new
-                self._franka.set_joint_positions(nparray_new)
+                #self._franka.set_joint_positions(nparray_new)
             else:
                 print("Skipped array of incompatible size: ", nparray.size)
             
